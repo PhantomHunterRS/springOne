@@ -2,6 +2,8 @@ package server;
 
 import client.AuthException;
 import client.TextMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import server.auth.AuthService;
 import server.auth.AuthServiceJdbcImpl;
 import server.persistance.UserRepository;
@@ -18,15 +20,17 @@ import java.util.*;
 
 import static client.MessagePatterns.AUTH_FAIL_RESPONSE;
 import static client.MessagePatterns.AUTH_SUCCESS_RESPONSE;
-
+@Component
 public class ChatServer {
 
+    @Autowired
     private AuthService authService;
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
 
-    public ChatServer(AuthService authService) {
-        this.authService = authService;
-    }
+//    @Autowired
+//    public ChatServer(AuthService authService) {
+//        this.authService = authService;
+//    }
 
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {

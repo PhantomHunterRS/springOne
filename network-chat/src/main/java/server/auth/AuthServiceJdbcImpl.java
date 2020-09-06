@@ -1,14 +1,18 @@
 package server.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import server.User;
 import server.persistance.UserRepository;
 
 import java.sql.SQLException;
 
+@Service
 public class AuthServiceJdbcImpl implements AuthService {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public AuthServiceJdbcImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
